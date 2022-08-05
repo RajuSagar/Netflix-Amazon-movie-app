@@ -9,7 +9,6 @@ const Footer = () => (
     {value => {
       const {username} = value
       console.log(username)
-
       return (
         <div className="footer-container">
           <div>

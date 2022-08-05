@@ -50,7 +50,6 @@ class Home extends Component {
         posterPath: each.poster_path,
         title: each.title,
       }))
-
       this.setState({
         apiStatus: apiConstants.success,
         allTrendingMovies: updatedMoviesList,
