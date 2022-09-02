@@ -121,6 +121,7 @@ class Login extends Component {
                   Login
                 </button>
               </form>
+              <p className="raju">Developed by Raju Sagar</p>
             </div>
           )
         }}
