@@ -149,7 +149,7 @@ class TrendingNow extends Component {
             </div>
           )
 
-          const getResultView = () => {
+          const getResult = () => {
             const {apiStatus} = this.state
             switch (apiStatus) {
               case apiConstants.success:
@@ -163,7 +163,7 @@ class TrendingNow extends Component {
             }
           }
 
-          return <div className="trending-now-container">{getResultView()}</div>
+          return <div testid="trending">{getResult()}</div>
         }}
       </MovieContext.Consumer>
     )

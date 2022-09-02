@@ -20,14 +20,14 @@ const apiConstants = {
 class Home extends Component {
   state = {
     apiStatus: apiConstants.initial,
-    allTrendingMovies: [],
+    allTrendingVideos: [],
   }
 
   componentDidMount() {
-    this.getAllMovies()
+    this.getAllVideos()
   }
 
-  getAllMovies = async () => {
+  getAllVideos = async () => {
     this.setState({apiStatus: apiConstants.inProgress})
 
     const url = 'https://apis.ccbp.in/movies-app/originals'
@@ -43,16 +43,17 @@ class Home extends Component {
     if (response.ok) {
       const data = await response.json()
 
-      const updatedMoviesList = data.results.map(each => ({
+      const updatedVideosList = data.results.map(each => ({
         id: each.id,
         backdropPath: each.backdrop_path,
         overview: each.overview,
         posterPath: each.poster_path,
         title: each.title,
       }))
+
       this.setState({
         apiStatus: apiConstants.success,
-        allTrendingMovies: updatedMoviesList,
+        allTrendingVideos: updatedVideosList,
       })
     } else {
       this.setState({apiStatus: apiConstants.failure})
@@ -61,10 +62,10 @@ class Home extends Component {
 
   render() {
     const renderSuccessView = () => {
-      const {allTrendingMovies} = this.state
+      const {allTrendingVideos} = this.state
 
       const homeHeaderItem =
-        allTrendingMovies[Math.floor(Math.random() * allTrendingMovies.length)]
+        allTrendingVideos[Math.floor(Math.random() * allTrendingVideos.length)]
 
       const backgroundImage = homeHeaderItem.backdropPath
       const titleOfHeader = homeHeaderItem.title
@@ -72,7 +73,7 @@ class Home extends Component {
 
       return (
         <div
-          className="home-img-container"
+          className="spiderman-container"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundSize: '100% 100%',
@@ -92,7 +93,7 @@ class Home extends Component {
     }
 
     const renderMovieItem = () => {
-      this.getAllMovies()
+      this.getAllVideos()
     }
 
     const renderLoader = () => <LoadingView />
@@ -134,7 +135,7 @@ class Home extends Component {
       <MovieContext.Consumer>
         {value => {
           const {username} = value
-          console.log(username)
+          console.log('username from Home', {username})
 
           return (
             <>

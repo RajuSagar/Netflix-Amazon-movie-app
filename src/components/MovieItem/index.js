@@ -63,12 +63,12 @@ class MovieItem extends Component {
     if (response.ok) {
       const data = await response.json()
 
-      const updatedMoviesList = this.getFormattedData(data.movie_details)
+      const updatedVideosList = this.getFormattedData(data.movie_details)
 
       this.setState({
         apiStatus: apiConstants.success,
-        movieItemDetails: updatedMoviesList,
-        similarMovieItems: updatedMoviesList.similarMovieItems.slice(0, 6),
+        movieItemDetails: updatedVideosList,
+        similarMovieItems: updatedVideosList.similarMovieItems.slice(0, 6),
       })
     } else {
       this.setState({apiStatus: apiConstants.failure})
@@ -227,7 +227,7 @@ class MovieItem extends Component {
             </div>
           )
 
-          const resultView = () => {
+          const getResult = () => {
             const {apiStatus} = this.state
             switch (apiStatus) {
               case apiConstants.success:
@@ -241,11 +241,10 @@ class MovieItem extends Component {
             }
           }
 
-          return <div testid="movieItem">{resultView()}</div>
+          return <div testid="movieItem">{getResult()}</div>
         }}
       </MovieContext.Consumer>
     )
   }
 }
-
 export default withRouter(MovieItem)

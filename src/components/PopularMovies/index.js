@@ -114,7 +114,7 @@ class PopularMovies extends Component {
             </div>
           )
 
-          const getResultView = () => {
+          const getResult = () => {
             const {apiStatus} = this.state
             switch (apiStatus) {
               case apiConstants.success:
@@ -128,7 +128,7 @@ class PopularMovies extends Component {
             }
           }
 
-          return <div testid="trending">{getResultView()}</div>
+          return <div testid="trending">{getResult()}</div>
         }}
       </MovieContext.Consumer>
     )

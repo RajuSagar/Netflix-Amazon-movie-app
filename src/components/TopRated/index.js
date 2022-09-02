@@ -147,7 +147,7 @@ class TopRated extends Component {
             </div>
           )
 
-          const getResultView = () => {
+          const getResult = () => {
             const {apiStatus} = this.state
             switch (apiStatus) {
               case apiConstants.success:
@@ -161,11 +161,10 @@ class TopRated extends Component {
             }
           }
 
-          return <div testid="toprated">{getResultView()}</div>
+          return <div testid="toprated">{getResult()}</div>
         }}
       </MovieContext.Consumer>
     )
   }
 }
-
 export default TopRated

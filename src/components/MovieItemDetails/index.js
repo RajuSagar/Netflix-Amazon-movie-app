@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Header from '../Header'
 
+import MovieContext from '../../context/MovieContext'
 import Footer from '../Footer'
 
 import MovieItem from '../MovieItem'
@@ -8,13 +9,22 @@ import MovieItem from '../MovieItem'
 class MovieItemDetails extends Component {
   render() {
     return (
-      <div>
-        <div className="home-container">
-          <Header />
-          <MovieItem />
-        </div>
-        <Footer />
-      </div>
+      <MovieContext.Consumer>
+        {value => {
+          const {username} = value
+          console.log('username from movieItemDetails', {username})
+
+          return (
+            <>
+              <div className="home-container">
+                <Header />
+                <MovieItem />
+              </div>
+              <Footer />
+            </>
+          )
+        }}
+      </MovieContext.Consumer>
     )
   }
 }

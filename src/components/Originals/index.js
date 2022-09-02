@@ -20,14 +20,14 @@ const apiConstants = {
 class Originals extends Component {
   state = {
     apiStatus: apiConstants.initial,
-    allTrendingItemMovies: [],
+    allTrendingItemVideos: [],
   }
 
   componentDidMount() {
-    this.getOriginalMovies()
+    this.getOriginalVideos()
   }
 
-  getOriginalMovies = async () => {
+  getOriginalVideos = async () => {
     this.setState({apiStatus: apiConstants.inProgress})
 
     const url = 'https://apis.ccbp.in/movies-app/originals'
@@ -42,8 +42,9 @@ class Originals extends Component {
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
+      console.log(data)
 
-      const updatedMoviesList = data.results.map(each => ({
+      const updatedVideosList = data.results.map(each => ({
         id: each.id,
         backdropPath: each.backdrop_path,
         overview: each.overview,
@@ -53,7 +54,7 @@ class Originals extends Component {
 
       this.setState({
         apiStatus: apiConstants.success,
-        allTrendingItemMovies: updatedMoviesList,
+        allTrendingItemVideos: updatedVideosList,
       })
     } else {
       this.setState({apiStatus: apiConstants.failure})
@@ -70,7 +71,7 @@ class Originals extends Component {
           const renderLoader = () => <LoadingView />
 
           const renderSuccessView = () => {
-            const {allTrendingItemMovies} = this.state
+            const {allTrendingItemVideos} = this.state
 
             const settings = {
               dots: false,
@@ -106,7 +107,7 @@ class Originals extends Component {
             return (
               <ul>
                 <Slider {...settings} className="slick-container">
-                  {allTrendingItemMovies.map(each => (
+                  {allTrendingItemVideos.map(each => (
                     <div className="slick-item" key={each.id}>
                       <li key={each.id}>
                         <Link to={`/movies/${each.id}`} key={each.id}>
@@ -169,5 +170,4 @@ class Originals extends Component {
     )
   }
 }
-
 export default Originals

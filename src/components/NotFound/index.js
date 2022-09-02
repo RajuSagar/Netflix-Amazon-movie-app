@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './index.css'
 
 const NotFound = () => (
-  <div className="failure-case" testid="not found">
+  <div className="failureContainer" testid="not found">
     <h1>Lost Your way</h1>
     <p>
       we are sorry, the page you requested could not be found Please go back to
